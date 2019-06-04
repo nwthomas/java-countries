@@ -20,9 +20,15 @@ public class PopulationController
 		return new ResponseEntity<>(populationbyNumber, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "min", produces = {"application/json"})
+	@RequestMapping(value = "/min", produces = {"application/json"})
 	public ResponseEntity<?> getMinSizedCountry()
 	{
 		return new ResponseEntity<>(CountryssearchApplication.ourCountryList.getMinSizedCountry(), HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/max", produces = {"application/json"})
+	public ResponseEntity<?> getMaxSizedCountry()
+	{
+		return new ResponseEntity<>(CountryssearchApplication.ourCountryList.getMaxSizedCountry(), HttpStatus.OK);
 	}
 }

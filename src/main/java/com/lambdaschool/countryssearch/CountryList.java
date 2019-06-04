@@ -246,4 +246,43 @@ public class CountryList
 		}
 		return minCountry;
 	}
+
+	public Country getMaxSizedCountry()
+	{
+		Country minCountry = countryList.get(0);
+		for (Country c : countryList)
+		{
+			if (minCountry.getPopulation() < c.getPopulation())
+			{
+				minCountry = c;
+			}
+		}
+		return minCountry;
+	}
+
+	public ArrayList<Country> getMedianAgeOrBigger(CheckCountry tester)
+	{
+		ArrayList<Country> biggerAgesCountries = new ArrayList<>();
+		for (Country c : countryList)
+		{
+			if (tester.test(c))
+			{
+				biggerAgesCountries.add(c);
+			}
+		}
+		return biggerAgesCountries;
+	}
+
+	public Country getMinAgedCountry()
+	{
+		Country minCountry = countryList.get(1);
+		for (Country c : countryList)
+		{
+			if (minCountry.getAvgAge() > c.getAvgAge())
+			{
+				minCountry = c;
+			}
+		}
+		return minCountry;
+	}
 }
