@@ -221,7 +221,7 @@ public class CountryList
 		return countryNamesList;
 	}
 
-	public ArrayList<String> getNamesWithLetter(CheckCountry tester)
+	public ArrayList<String> getCountryNamesWithTest(CheckCountry tester)
 	{
 		ArrayList<String> namedLetterList = new ArrayList<>();
 		for (Country c : countryList)
@@ -234,16 +234,16 @@ public class CountryList
 		return namedLetterList;
 	}
 
-	public ArrayList<String> getNamesFromLength(CheckCountry tester)
+	public Country getMinSizedCountry()
 	{
-		ArrayList<String> namesFromLong = new ArrayList<>();
+		Country minCountry = countryList.get(0);
 		for (Country c : countryList)
 		{
-			if (tester.test(c))
+			if (minCountry.getPopulation() > c.getPopulation())
 			{
-				namesFromLong.add(c.getName());
+				minCountry = c;
 			}
 		}
-		return namesFromLong;
+		return minCountry;
 	}
 }

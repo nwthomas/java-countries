@@ -24,24 +24,24 @@ public class NamesController
 
 	@RequestMapping(value = "/start/{letter}",
 			produces = {"application/json"})
-	public ResponseEntity<?> getNamesWithLetter(
+	public ResponseEntity<?> getNamesWithTest(
 			@PathVariable
 					char letter)
 	{
 		ArrayList<String> countryMatchers;
-		countryMatchers = CountryssearchApplication.ourCountryList.getNamesWithLetter(c -> c.getName().toUpperCase().charAt(0) == Character.toUpperCase(letter));
+		countryMatchers = CountryssearchApplication.ourCountryList.getCountryNamesWithTest(c -> c.getName().toUpperCase().charAt(0) == Character.toUpperCase(letter));
 		countryMatchers.sort((c1, c2) -> c1.compareToIgnoreCase(c2));
 		return new ResponseEntity<>(countryMatchers, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/size/{number}",
 			produces = {"application/json"})
-	public ResponseEntity<?> getNameLength(
+	public ResponseEntity<?> getNamesWithTest(
 			@PathVariable
 					int number)
 	{
 		ArrayList<String> nameLengthList;
-		nameLengthList = CountryssearchApplication.ourCountryList.getNamesFromLength(c -> c.getName().length() == number);
+		nameLengthList = CountryssearchApplication.ourCountryList.getCountryNamesWithTest(c -> c.getName().length() == number);
 		nameLengthList.sort((c1, c2) -> c1.compareToIgnoreCase(c2));
 		return new ResponseEntity<>(nameLengthList, HttpStatus.OK);
 	}
