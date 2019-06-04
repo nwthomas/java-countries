@@ -285,4 +285,17 @@ public class CountryList
 		}
 		return minCountry;
 	}
+
+	public Country getMaxAgedCountry()
+	{
+		Country maxCountry = countryList.get(1);
+		for (Country c : countryList)
+		{
+			if (maxCountry.getAvgAge() < c.getAvgAge())
+			{
+				maxCountry = c;
+			}
+		}
+		return maxCountry;
+	}
 }

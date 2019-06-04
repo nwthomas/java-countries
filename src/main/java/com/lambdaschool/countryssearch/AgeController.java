@@ -28,4 +28,12 @@ public class AgeController
 		minAgeCountry = CountryssearchApplication.ourCountryList.getMinAgedCountry();
 		return new ResponseEntity<>(minAgeCountry, HttpStatus.OK);
 	}
+
+	@RequestMapping(value = "/max", produces = {"application/json"})
+	public ResponseEntity<?> getBiggestAvgAge()
+	{
+		Country maxAgeCountry;
+		maxAgeCountry = CountryssearchApplication.ourCountryList.getMaxAgedCountry();
+		return new ResponseEntity<>(maxAgeCountry, HttpStatus.OK);
+	}
 }
