@@ -220,4 +220,17 @@ public class CountryList
 		}
 		return countryNamesList;
 	}
+
+	public ArrayList<String> getNamesWithLetter(CheckCountry tester)
+	{
+		ArrayList<String> namedLetterList = new ArrayList<>();
+		for (Country c : countryList)
+		{
+			if (tester.test(c))
+			{
+				namedLetterList.add(c.getName());
+			}
+		}
+		return namedLetterList;
+	}
 }
