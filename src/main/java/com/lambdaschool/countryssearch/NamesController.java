@@ -11,13 +11,15 @@ import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/names")
-public class CountryController
+public class NamesController
 {
 	@RequestMapping(value = "/all",
 			produces = {"application/json"})
 	public ResponseEntity<?> getAllCountryNames()
 	{
-		return new ResponseEntity<>(CountryssearchApplication.ourCountryList.getCountryNames(), HttpStatus.OK);
+		ArrayList<String> allSortedCountries = CountryssearchApplication.ourCountryList.getCountryNames();
+		allSortedCountries.sort((c1, c2) -> c1.compareToIgnoreCase(c2));
+		return new ResponseEntity<>(allSortedCountries, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/start/{letter}",
@@ -28,6 +30,19 @@ public class CountryController
 	{
 		ArrayList<String> countryMatchers;
 		countryMatchers = CountryssearchApplication.ourCountryList.getNamesWithLetter(c -> c.getName().toUpperCase().charAt(0) == Character.toUpperCase(letter));
+		countryMatchers.sort((c1, c2) -> c1.compareToIgnoreCase(c2));
 		return new ResponseEntity<>(countryMatchers, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/size/{number}",
+			produces = {"application/json"})
+	public ResponseEntity<?> getNameLength(
+			@PathVariable
+					int number)
+	{
+		ArrayList<String> nameLengthList;
+		nameLengthList = CountryssearchApplication.ourCountryList.getNamesFromLength(c -> c.getName().length() == number);
+		nameLengthList.sort((c1, c2) -> c1.compareToIgnoreCase(c2));
+		return new ResponseEntity<>(nameLengthList, HttpStatus.OK);
 	}
 }

@@ -233,4 +233,17 @@ public class CountryList
 		}
 		return namedLetterList;
 	}
+
+	public ArrayList<String> getNamesFromLength(CheckCountry tester)
+	{
+		ArrayList<String> namesFromLong = new ArrayList<>();
+		for (Country c : countryList)
+		{
+			if (tester.test(c))
+			{
+				namesFromLong.add(c.getName());
+			}
+		}
+		return namesFromLong;
+	}
 }
