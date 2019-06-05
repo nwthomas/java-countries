@@ -1,6 +1,9 @@
 package com.lambdaschool.countryssearch;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class CountryList
 {
@@ -297,5 +300,18 @@ public class CountryList
 			}
 		}
 		return maxCountry;
+	}
+
+	public Country getMedianAgeCountry()
+	{
+		Collections.sort(countryList, new Comparator<Country>()
+		{
+			@Override
+			public int compare(Country o1, Country o2)
+			{
+				return o1.getAvgAge() - o2.getAvgAge();
+			}
+		});
+		return countryList.get(countryList.size() / 2);
 	}
 }

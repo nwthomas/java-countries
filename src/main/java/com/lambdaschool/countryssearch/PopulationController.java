@@ -12,21 +12,26 @@ import java.util.ArrayList;
 @RequestMapping("/population")
 public class PopulationController
 {
-	@RequestMapping(value = "/size/{people}", produces = {"application/json"})
-	public ResponseEntity<?> getPopBySize(@PathVariable int people)
+	@RequestMapping(value = "/size/{people}",
+			produces = {"application/json"})
+	public ResponseEntity<?> getPopBySize(
+			@PathVariable
+					int people)
 	{
 		ArrayList<String> populationbyNumber;
 		populationbyNumber = new CountryssearchApplication().ourCountryList.getCountryNamesWithTest(c -> c.getName().length() >= people);
 		return new ResponseEntity<>(populationbyNumber, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/min", produces = {"application/json"})
+	@RequestMapping(value = "/min",
+			produces = {"application/json"})
 	public ResponseEntity<?> getMinSizedCountry()
 	{
 		return new ResponseEntity<>(CountryssearchApplication.ourCountryList.getMinSizedCountry(), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/max", produces = {"application/json"})
+	@RequestMapping(value = "/max",
+			produces = {"application/json"})
 	public ResponseEntity<?> getMaxSizedCountry()
 	{
 		return new ResponseEntity<>(CountryssearchApplication.ourCountryList.getMaxSizedCountry(), HttpStatus.OK);
